@@ -353,7 +353,7 @@ type BaseRequest struct {
 // BaseResourcePropertiesClassification provides polymorphic access to related types.
 // Call the interface's GetBaseResourceProperties() method to access the common type.
 // Use a type switch to determine the concrete type.  The possible types are:
-// - *BaseResourceProperties, *VmwareVMProperties
+// - *BaseResourceProperties, *VmwareVMProperties, *HyperVVMProperties
 type BaseResourcePropertiesClassification interface {
 	// GetBaseResourceProperties returns the BaseResourceProperties content of the underlying type.
 	GetBaseResourceProperties() *BaseResourceProperties
@@ -1677,6 +1677,22 @@ type VmwareVMProperties struct {
 
 // GetBaseResourceProperties implements the BaseResourcePropertiesClassification interface for type VmwareVMProperties.
 func (v *VmwareVMProperties) GetBaseResourceProperties() *BaseResourceProperties {
+	return &BaseResourceProperties{
+		ObjectType: v.ObjectType,
+	}
+}
+
+// HyperVVMProperties - Properties which are specific to hyper-v
+type HyperVVMProperties struct {
+	// REQUIRED; instanceuuid
+	InstanceUUID *string `json:"instanceUuid,omitempty"`
+
+	// REQUIRED; Type of the specific object - used for deserializing
+	ObjectType *string `json:"objectType,omitempty"`
+}
+
+// GetBaseResourceProperties implements the BaseResourcePropertiesClassification interface for type HyperVVMProperties.
+func (v *HyperVVMProperties) GetBaseResourceProperties() *BaseResourceProperties {
 	return &BaseResourceProperties{
 		ObjectType: v.ObjectType,
 	}

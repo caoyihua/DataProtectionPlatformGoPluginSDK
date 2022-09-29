@@ -114,6 +114,8 @@ func unmarshalBaseResourcePropertiesClassification(rawMsg json.RawMessage) (Base
 	switch m["objectType"] {
 	case "VmwareVMProperties":
 		b = &VmwareVMProperties{}
+	case "HyperVVMProperties":
+		b = &HyperVVMProperties{}
 	default:
 		b = &BaseResourceProperties{}
 	}
