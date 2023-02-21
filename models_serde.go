@@ -1173,6 +1173,7 @@ func (v *VmwareVMProperties) UnmarshalJSON(data []byte) error {
 func (v HyperVVMProperties) MarshalJSON() ([]byte, error) {
 	objectMap := make(map[string]interface{})
 	populate(objectMap, "instanceUuid", v.InstanceUUID)
+	populate(objectMap, "includedDisks", v.IncludedDisks)
 	objectMap["objectType"] = "HyperVVMProperties"
 	return json.Marshal(objectMap)
 }
@@ -1191,6 +1192,9 @@ func (v *HyperVVMProperties) UnmarshalJSON(data []byte) error {
 			delete(rawMsg, key)
 		case "objectType":
 			err = unpopulate(val, "ObjectType", &v.ObjectType)
+			delete(rawMsg, key)
+		case "includedDisks":
+			err = unpopulate(val, "IncludedDisks", &v.IncludedDisks)
 			delete(rawMsg, key)
 		}
 		if err != nil {

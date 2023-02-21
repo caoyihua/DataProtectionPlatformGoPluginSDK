@@ -1689,6 +1689,9 @@ type HyperVVMProperties struct {
 
 	// REQUIRED; Type of the specific object - used for deserializing
 	ObjectType *string `json:"objectType,omitempty"`
+
+	// Included disks to be protected
+	IncludedDisks []*string `json:"includedDisks,omitempty"`
 }
 
 // GetBaseResourceProperties implements the BaseResourcePropertiesClassification interface for type HyperVVMProperties.

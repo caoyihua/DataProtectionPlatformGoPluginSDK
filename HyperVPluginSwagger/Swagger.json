@@ -4814,8 +4814,14 @@
           "description": "instanceuuid",
           "type": "string",
           "readOnly": false
-        }
-        },      
+        },
+        "includedDisks": {
+          "description": "List of disks to be protected",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
       "x-csharp-usage": "model,input,output,converter",
       "x-csharp-formats": "json",
       "x-ms-discriminator-value": "HyperVVMProperties"
